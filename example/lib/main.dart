@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:toggle_button/toggle_button.dart';
 
 void main() => runApp(MyApp());

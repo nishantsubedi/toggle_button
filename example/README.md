@@ -1,14 +1,85 @@
-# toggle_button
+### Toggle Button.
 
-A new flutter plugin project.
+```dart
+import 'package:flutter/material.dart';
 
-## Getting Started
+import 'package:toggle_button/toggle_button.dart';
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.io/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+void main() => runApp(MyApp());
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Toggle Button example '),
+          ),
+          body: Container(
+            alignment: Alignment.center,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  child: ToggleButton(
+                    borderRadius: 40.0,
+                    size: 15.0,
+                    onChange: (sta) {
+                      print(sta);
+                    },
+                    axis: ToggleButtonAlignment.horizontal,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  child: ToggleButton(
+                    borderRadius: 0.0,
+                    size: 15.0,
+                    onChange: (sta) {
+                      print(sta);
+                    },
+                    axis: ToggleButtonAlignment.horizontal,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  child: ToggleButton(
+                    borderRadius: 0.0,
+                    size: 15.0,
+                    onChange: (sta) {
+                      print(sta);
+                    },
+                    axis: ToggleButtonAlignment.verticle,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  child: ToggleButton(
+                    borderRadius: 0.0,
+                    backgroundColor: Colors.indigo,
+                    size: 30.0,
+                    onChange: (status) {
+                      print(status);
+                    },
+                    axis: ToggleButtonAlignment.horizontal,
+                  ),
+                )
+              ],
+            ),
+          )),
+    );
+  }
+}
+
+```

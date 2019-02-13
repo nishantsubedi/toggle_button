@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 
-class ToggleButtonAlignment {
-  static int verticle = 1011;
-  static int horizontal = 1010;
-}
+enum ToggleButtonAlignment { verticle, horizontal }
 
 class ToggleButton extends StatefulWidget {
-  double size;
-  Color backgroundColor;
-  Color foregroundColor;
-  Color deactivatedColor;
-  int axis;
-  double borderRadius;
-  void Function(bool status) onChange;
-  bool initialVale;
-  List<BoxShadow> boxShadow = [];
+  final double size;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final Color deactivatedColor;
+  final ToggleButtonAlignment axis;
+  final double borderRadius;
+  final void Function(bool status) onChange;
+  final bool initialVale;
+  final List<BoxShadow> boxShadow;
   ToggleButton(
-      {this.size,
-      this.backgroundColor,
-      this.foregroundColor,
-      this.axis,
-      this.borderRadius,
-      this.initialVale,
-      this.deactivatedColor,
-      this.boxShadow,
+      {this.size: 15.0,
+      this.backgroundColor: Colors.green,
+      this.foregroundColor: Colors.white,
+      this.axis: ToggleButtonAlignment.horizontal,
+      this.borderRadius: 40.0,
+      this.initialVale: false,
+      this.deactivatedColor: Colors.grey,
+      this.boxShadow: const [],
       this.onChange});
 
   @override
@@ -33,55 +30,26 @@ class ToggleButton extends StatefulWidget {
 }
 
 class ToggleButtonState extends State<ToggleButton> {
-  bool _active = false;
+  bool _active;
   double size;
   Color backgroundColor;
   Color foregroundColor;
   Color deactivatedColor;
-  int axis;
+  ToggleButtonAlignment axis;
   double borderRadius;
   bool initialVale;
   double width;
   double height;
 
-  void start() {
-    if (widget.size != null)
-      size = widget.size;
-    else
-      size = 15.0;
-    if (widget.axis != null)
-      axis = widget.axis;
-    else
-      axis = 1010;
-    if (widget.backgroundColor != null)
-      backgroundColor = widget.backgroundColor;
-    else
-      backgroundColor = Colors.green;
-
-    if (widget.foregroundColor != null)
-      foregroundColor = widget.foregroundColor;
-    else
-      foregroundColor = Colors.white;
-
-    if (widget.initialVale != null)
-      _active = widget.initialVale;
-    
-
-    if (widget.borderRadius != null)
-      borderRadius = widget.borderRadius;
-    else
-      borderRadius = 40.0;
-
-    if (widget.deactivatedColor != null)
-      deactivatedColor = widget.deactivatedColor;
-    else
-      deactivatedColor = Colors.grey;
+  @override
+  void initState() {
+    super.initState();
+    _active = widget.initialVale;
   }
 
   @override
   Widget build(BuildContext context) {
-   start();
-    if (axis == 1010) {
+    if (axis == ToggleButtonAlignment.horizontal) {
       width = size * 5.0;
       height = size * 2.0;
     } else {
@@ -99,11 +67,19 @@ class ToggleButtonState extends State<ToggleButton> {
         child: Stack(
           children: <Widget>[
             Positioned(
-                top: axis == 1010 ? (0.0) : (_active ? height - width : 0.0),
-                left: axis == 1010 ? (_active ? width - height : 0.0) : (0.0),
+                top: axis == ToggleButtonAlignment.horizontal
+                    ? (0.0)
+                    : (_active ? height - width : 0.0),
+                left: axis == ToggleButtonAlignment.horizontal
+                    ? (_active ? width - height : 0.0)
+                    : (0.0),
                 child: Container(
-                  width: axis == 1010 ? height - 2.0 : width - 2.0,
-                  height: axis == 1010 ? height - 2.0 : width - 2.0,
+                  width: axis == ToggleButtonAlignment.horizontal
+                      ? height - 2.0
+                      : width - 2.0,
+                  height: axis == ToggleButtonAlignment.horizontal
+                      ? height - 2.0
+                      : width - 2.0,
                   margin: EdgeInsets.all(1.0),
                   decoration: BoxDecoration(
                       color: foregroundColor,
