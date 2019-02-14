@@ -6,3 +6,12 @@
 pubspec.lock
 
 build/
+
+######################
+## IDE stuff
+
+#intellij, android, pycharm et JetBrains ;-)
+.atom/
+.idea
+.vscode/
+
